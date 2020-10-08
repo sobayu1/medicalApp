@@ -1,0 +1,116 @@
+<div class="card col-sm-6 mx-auto mt-5">
+    <div class="card-body">
+        <h2 class="text-center mt-1 mb-4">ユーザー健康情報登録</h2>
+        <%= form_for [@user , @user_information] do |f| %>
+
+        <div class="form-group">
+            <%= f.label :height, '身長'  %><br />
+            <%= f.number_field :height, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :weight, '体重'  %><br />
+            <%= f.number_field :weight, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= f.label :waist_circumference, '腹囲'  %><br />
+            <%= f.number_field :waist_circumference, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :right_unaided_eyesight, '裸眼視力(右)'  %><br />
+            <%= f.number_field :right_unaided_eyesight, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :left_unaided_eyesight, '裸眼視力(左)'  %><br />
+            <%= f.number_field :left_unaided_eyesight, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :right_collected_vision, '矯正視力(左)'  %><br />
+            <%= f.number_field :right_collected_vision, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :left_collected_vision, '矯正視力(左)'  %><br />
+            <%= f.number_field :left_collected_vision, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :hearing, '聴力'  %><br />
+            <%= f.text_field :hearing,class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :maximum_blood_pressure, '血圧（最高値）'  %><br />
+            <%= f.number_field :maximum_blood_pressure, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :minimum_blood_pressure, '血圧（最低値）'  %><br />
+            <%= f.number_field :minimum_blood_pressure, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= f.label :hdl_cholesterole, 'HDLコレステロール'  %><br />
+            <%= f.number_field :hdl_cholesterole, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :ldl_cholesterole, 'LDLコレステロール'  %><br />
+            <%= f.number_field :ldl_cholesterole, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :neutral_fat, '中性脂肪'  %><br />
+            <%= f.number_field :neutral_fat, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :ast, 'AST'  %><br />
+            <%= f.number_field :ast, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :alt, 'ALT'  %><br />
+            <%= f.number_field :alt, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :gtp, 'γ-GTP'  %><br />
+            <%= f.number_field :gtp, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :blood_sugar, '血糖'  %><br />
+            <%= f.number_field :blood_sugar, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :hba1c, 'HbA1c(NGSP)'  %><br />
+            <%= f.number_field :hba1c, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :hemoglobin, 'ヘモグロビン'  %><br />
+            <%= f.number_field :hemoglobin ,class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :red_blood_cells, '赤血球数'  %><br />
+            <%= f.number_field :red_blood_cells ,class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :chest_x_ray, '胸部X線'  %><br />
+            <%= f.text_field :chest_x_ray ,class: 'form-control' %>
+        </div>
+
+
+
+        <%= f.submit '登録', class: 'btn btn-primary' %>
+
+        <% end %>
+
+    </div>
+</div>

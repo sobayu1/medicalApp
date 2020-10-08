@@ -1,0 +1,63 @@
+<div class="row">
+    <aside class="col-md-4">
+        <section class="user_info">
+
+            <% if @user.image? %>
+            <p><%= image_tag @user.image.thumb.url %></p>
+            <% end %>
+
+            <p>名前：<%= @user.username %></p>
+            <p>性別：<%= @user.sex %></p>
+            <p>生年月日：<%= @user.birth_date %></p>
+            <p>Eメール：<%= @user.email %></p>
+
+            <%= link_to 'ユーザー情報編集' , edit_user_registration_path, class: "btn btn-lg btn-secondary" %>
+
+            <%= link_to '健康相談へ' , new_user_consultation_path(current_user), class: "btn btn-lg btn-success" %>
+
+        </section>
+    </aside>
+
+    <div class="card col-md-8 mx-auto mt-5">
+        <div class="card-body">
+            <h2 class="text-center mt-1 mb-4">ユーザー健康情報</h2>
+            <h5>身体計測</h5>
+            <p>身長：<%= @user_information.height %>cm</p>
+            <p>体重：<%= @user_information.weight %>kg</p>
+            <!-- <p>標準体重:<%= @user_information.waist_circumference %>kg</p> -->
+            <!-- <p>BMI：<%= @user_information.height %></p> -->
+            <p>腹囲：<%= @user_information.waist_circumference %>cm</p>
+            <!-- <p>肥満度：<%= @user_information.height %></p> -->
+            <h5>視力</h5>
+            <p>裸眼視力(右):<%= @user_information.right_unaided_eyesight %></p>
+            <p>裸眼視力(左):<%= @user_information.left_unaided_eyesight%></p>
+            <p>矯正視力(右):<%= @user_information.right_collected_vision %></p>
+            <p>矯正視力(左):<%= @user_information.left_collected_vision %></p>
+            <h5>聴力</h5>
+            <p>所見:<%= @user_information.hearing %></p>
+            <h5>血圧</h5>
+            <p>最高値:<%= @user_information.maximum_blood_pressure %>mmHg</p>
+            <p>最低値:<%= @user_information.minimum_blood_pressure %>mmHg</p>
+            <h5>脂質</h5>
+            <p>HDLコレステロール:<%= @user_information.hdl_cholesterole %>mg/dL</p>
+            <p>LDLコレステロール:<%= @user_information.ldl_cholesterole %>mg/dL</p>
+            <p>中性脂肪:<%= @user_information.neutral_fat %>mg/dL</p>
+            <h5>肝機能</h5>
+            <p>AST:<%= @user_information.ast %>U/L</p>
+            <p>ALT:<%= @user_information.alt %>U/L</p>
+            <p>γ-GTP:<%= @user_information.gtp %>U/L</p>
+            <h5>糖代謝</h5>
+            <p>血糖:<%= @user_information.blood_sugar %>mg/dL</p>
+            <p>HbA1c(NGSP):<%= @user_information.hba1c %>%</p>
+            <p>尿糖:</p>
+            <h5>血液一般</h5>
+            <p>ヘモグロビン:<%= @user_information.hemoglobin %>g/dL</p>
+            <p>赤血球数:<%= @user_information.red_blood_cells %>/μL</p>
+            <h5>胸部X線</h5>
+            <p>所見:<%= @user_information.chest_x_ray %></p>
+
+            <%= link_to 'ユーザー健康情報変更', edit_user_information_path(current_user),class:"btn btn-lg btn-success" %>
+
+        </div>
+    </div>
+</div>

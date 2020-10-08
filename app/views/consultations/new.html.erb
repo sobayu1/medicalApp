@@ -1,0 +1,50 @@
+<div class="card col-sm-6 mx-auto mt-5">
+    <div class="card-body">
+        <h2 class="text-center mt-1 mb-4">健康相談問診票登録</h2>
+
+        <!-- <% if flash[:error_messages] %>
+        <div class="alert alert-danger">
+            <ul>
+                <% flash[:error_messages].each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+        <% end %>
+        <%= render 'shared/error_messages' %> -->
+
+        <%= form_for [@user , @consultation] do |f| %>
+
+        <div class="form-group">
+            <%= f.label :what_symptom, '1.どんな症状がありますか？'  %><br />
+            <%= f.select :what_symptom, [["頭痛", "頭痛"], ["動悸", "動悸"], ["腹痛", "腹痛"], ["肩こり", "肩こり"], ["めまい", "めまい"], 
+            ["倦怠感", "倦怠感"], ["息切れ", "息切れ"], ["むくみ", "むくみ"], ["痺れ", "痺れ"], ["喉が乾く", "喉が乾く"], ["胸焼け", "胸焼け"],
+            ["腰痛", "腰痛"]], include_blank: "選択して下さい" , class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :when_symptom, '2.症状はいつ頃からありますか？'  %><br />
+            <%= f.select :when_symptom, [["今日", "今日"], ["1週間以内", "1週間以内"], ["1ヶ月以内", "1ヶ月以内"], ["1ヶ月以上前から", 
+            "1ヶ月以上前から"]], include_blank: "選択して下さい" , class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :desease_treated, '3.現在治療中の病気はありますか？'  %><br />
+            <%= f.select :desease_treated, [["いいえ","いいえ"],["はい","はい"]], include_blank: "選択して下さい" , class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :desease_name,'4.上記３で「はい」と回答した方はその病名をご記入下さい。' %>
+            <%= f.text_field :desease_name , class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :specific_consultation, '5.症状について詳細を教えて下さい。また診察についてご要望がございましたらご記入下さい。' %>
+            <%= f.text_area :specific_consultation , class: 'form-control' %>
+        </div>
+
+        <%= f.submit '以上の内容で相談する', class: 'btn btn-primary' %>
+
+        <% end %>
+    </div>
+</div>

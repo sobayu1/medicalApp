@@ -1,0 +1,35 @@
+<h1>健康相談履歴</h1>
+<div class="d-flex align-items-center">
+
+    <table class="table table-hover consultations__table">
+        <thead class="thead-dark">
+            <tr>
+                <!-- <th>ID</th> -->
+                <th>相談日</th>
+                <th>症状</th>
+                <th>いつ頃</th>
+                <th>現在治療中か</th>
+                <th>病名</th>
+                <th>具体的な症状</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% @consultations.each do |consultation| %>
+            <tr>
+                <!-- <td><%= consultation.id %></td> -->
+                <td><%= consultation.created_at %></td>
+                <td><%= consultation.what_symptom %></td>
+                <td><%= consultation.when_symptom %></td>
+                <td><%= consultation.desease_treated %></td>
+                <td><%= consultation.desease_name %></td>
+                <td><%= consultation.specific_consultation %></td>
+                <td><%= link_to'詳細', consultation_path(id:consultation.id),class:'btn btn-outline-dark'%></td>
+                <td><%= link_to'削除',consultation_path(id:consultation.id),class:'btn btn-outline-dark', method: :delete,
+                data:{confirm:"本当に削除しますか？"} %>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

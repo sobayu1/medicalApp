@@ -1,0 +1,57 @@
+<div class="card col-sm-6 mx-auto mt-5">
+  <div class="card-body mx-auto">
+    <h2 class="mt-1 mb-3">医師新規登録</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <%= f.label :doctorname %><br />
+      <%= f.text_field :doctorname, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <p class="control-label">性別</p>
+      <div class="radio-inline">
+        <%= f.radio_button :sex , "男性" %>
+        <%= f.label "男性", class: "sex_label" %>
+      </div>
+
+      <div class="radio-inline">
+        <%= f.radio_button :sex , "女性" %>
+        <%= f.label "女性", class: "sex_label" %>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <%= f.label :birth_date %><br />
+      <%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) ,class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以内)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "登録" %>
+    </div>
+    <% end %>
+
+    <%= render "doctors/shared/links" %>
+  </div>
+</div>

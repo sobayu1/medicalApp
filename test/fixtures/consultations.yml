@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  what_symptom: MyString
+  when_symptom: MyString
+  desease_treated: MyString
+  desease_name: MyString
+  specific_consultation: MyText
+  user: one
+
+two:
+  what_symptom: MyString
+  when_symptom: MyString
+  desease_treated: MyString
+  desease_name: MyString
+  specific_consultation: MyText
+  user: two

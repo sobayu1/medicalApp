@@ -1,0 +1,26 @@
+<div class="card col-sm-6 mx-auto mt-5">
+    <div class="card-body mx-auto">
+        <h2 class="text-center mt-1 mb-4">医師情報登録</h2>
+        <%= form_for [@doctor , @doctor_information] do |f| %>
+
+        <div class="form-group">
+            <%= f.label :hospital, '勤務病院'  %><br />
+            <%= f.text_field :hospital, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :specialty, '専門'  %><br />
+            <%= f.text_field :specialty, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= f.label :career, '経歴'  %><br />
+            <%= f.text_area :career, class: 'form-control' %>
+        </div>
+
+
+        <%= f.submit '登録', class: 'btn btn-primary' %>
+
+        <% end %>
+
+    </div>
+</div>

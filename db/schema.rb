@@ -1,0 +1,112 @@
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 2020_09_16_082849) do
+
+  create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "answer_content"
+    t.bigint "doctor_id"
+    t.bigint "consultation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["consultation_id"], name: "index_answers_on_consultation_id"
+    t.index ["doctor_id"], name: "index_answers_on_doctor_id"
+  end
+
+  create_table "consultations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "what_symptom"
+    t.string "when_symptom"
+    t.string "desease_treated"
+    t.string "desease_name"
+    t.text "specific_consultation"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_consultations_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_consultations_on_user_id"
+  end
+
+  create_table "doctor_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "hospital"
+    t.string "specialty"
+    t.text "career"
+    t.bigint "doctor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_doctor_informations_on_doctor_id"
+  end
+
+  create_table "doctors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "doctorname"
+    t.string "sex"
+    t.date "birth_date"
+    t.index ["email"], name: "index_doctors_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
+  end
+
+  create_table "user_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "height"
+    t.float "weight"
+    t.float "waist_circumference"
+    t.float "right_unaided_eyesight"
+    t.float "left_unaided_eyesight"
+    t.float "right_collected_vision"
+    t.float "left_collected_vision"
+    t.string "hearing"
+    t.float "maximum_blood_pressure"
+    t.float "minimum_blood_pressure"
+    t.float "hdl_cholesterole"
+    t.float "ldl_cholesterole"
+    t.float "neutral_fat"
+    t.float "ast"
+    t.float "alt"
+    t.float "gtp"
+    t.float "blood_sugar"
+    t.float "hba1c"
+    t.integer "hemoglobin"
+    t.integer "red_blood_cells"
+    t.string "chest_x_ray"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_user_informations_on_user_id"
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "sex"
+    t.date "birth_date"
+    t.string "image"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "answers", "consultations"
+  add_foreign_key "answers", "doctors"
+  add_foreign_key "consultations", "users"
+  add_foreign_key "doctor_informations", "doctors"
+  add_foreign_key "user_informations", "users"
+end
