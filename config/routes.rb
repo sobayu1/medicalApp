@@ -16,15 +16,17 @@ Rails.application.routes.draw do
     :registrations => 'doctors/registrations'
   }
 
-  resources :users, :only => [:show] ,shallow: true do
+  resources :users, :only => [:show] do
     resources :user_informations 
-    resources :consultations 
+    resources :consultations do 
+      resources :answers, :only => [:create] 
+    end
+
     end
 
   resources :doctors, :only => [:index,:show] ,shallow: true do
     resources :doctor_informations
   end
 
-  post 'answers/create'
 
 end
