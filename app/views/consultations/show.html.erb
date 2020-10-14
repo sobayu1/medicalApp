@@ -11,14 +11,15 @@
 
 <div class="answer-wrapper border-top　mb-10">
     <% if doctor_signed_in? %>
-    <%= form_with url: answers_create_path(@consultation) do |f| %>
+    <%= form_with url:user_consultation_answers_path(consultation_id:@consultation.id) do |f| %>
+
 
     <div class="form-group">
+        <!-- <%= f.hidden_field :consultation_id, :value => @consultation.id %> -->
         <%= f.label :answer_content, '健康相談への回答'  %><br />
         <%= f.text_area :answer_content, class: 'form-control' %>
     </div>
     <%= f.submit '回答する', class: 'btn btn-primary' %>
     <% end %>
     <% end %>
-
 </div>

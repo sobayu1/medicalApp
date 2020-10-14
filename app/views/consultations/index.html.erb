@@ -24,8 +24,8 @@
                 <td><%= consultation.desease_treated %></td>
                 <td><%= consultation.desease_name %></td>
                 <td><%= consultation.specific_consultation %></td>
-                <td><%= link_to'詳細', consultation_path(id:consultation.id),class:'btn btn-outline-dark'%></td>
-                <td><%= link_to'削除',consultation_path(id:consultation.id),class:'btn btn-outline-dark', method: :delete,
+                <td><%= link_to'詳細', user_consultation_path(id:consultation.id),class:'btn btn-outline-dark'%></td>
+                <td><%= link_to'削除',user_consultation_path(id:consultation.id),class:'btn btn-outline-dark', method: :delete,
                 data:{confirm:"本当に削除しますか？"} %>
                 </td>
             </tr>
