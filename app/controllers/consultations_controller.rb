@@ -1,5 +1,5 @@
 class ConsultationsController < ApplicationController
-    before_action :set_target_consultaion, only: %i[show destroy] 
+    before_action :set_target_consultation, only: %i[show destroy] 
     def index
         @user = User.find(params[:user_id])
         @consultations = Consultation.all
@@ -22,8 +22,7 @@ class ConsultationsController < ApplicationController
     end
 
     def show
-        @answers = @consultation.answers
-    
+        @answer = Answer.new
     end
 
     def destroy
@@ -38,7 +37,7 @@ class ConsultationsController < ApplicationController
         params.require(:consultation).permit(:what_symptom, :when_symptom, :desease_treated, :desease_name, :specific_consultation).merge(user_id: current_user.id)
     end
 
-    def set_target_consultaion
+    def set_target_consultation
         @consultation = Consultation.find(params[:id])
     end
 end
