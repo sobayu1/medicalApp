@@ -2,8 +2,7 @@
     <div class="card-body">
         <h2 class="text-center mt-1 mb-4">ユーザー健康情報変更</h2>
 
-        <%= form_for [@user_information] do |f| %>
-
+        <%= form_for [@user, @user_information] do |f| %>
         <div class="form-group">
             <%= f.label :height, '身長'  %><br />
             <%= f.number_field :height,class: 'form-control' %>

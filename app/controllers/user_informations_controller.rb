@@ -45,6 +45,6 @@ class UserInformationsController < ApplicationController
     end
 
     def set_target_user_information
-        @user_information = UserInformation.find(params[:id])
+        @user_information = UserInformation.find_or_initialize_by(params[:id])
     end
 end

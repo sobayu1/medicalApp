@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = current_user
     # birthday = Happybirthday.born_on(current_user.birth_date)
     # @birthday = birthday.age.years_old
-    @user_information = UserInformation.find(params[:id])
+    @user_information = UserInformation.find_or_initialize_by(params[:id]) 
   end
 
   def edit

@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
 
     def index 
-        @doctors = Doctor.all
+        @doctors = Doctor.all.page(params[:page]).per(15)
         # @doctor_information = DoctorInformation.find(params[:id])
     end
 
