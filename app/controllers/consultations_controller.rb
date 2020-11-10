@@ -1,8 +1,10 @@
 class ConsultationsController < ApplicationController
     before_action :set_target_consultation, only: %i[show destroy] 
+    DISPLAYED＿RESULTS = 6
+
     def index
         @user = User.find(params[:user_id])
-        @consultations = Consultation.all.page(params[:page]).per(5)
+        @consultations = Consultation.all.page(params[:page]).per(ConsultationsController::DISPLAYED＿RESULTS)
     end
 
     def new
@@ -22,8 +24,7 @@ class ConsultationsController < ApplicationController
     end
 
     def show
-        @answer = Answer.new
-        # @answer = Answer.find(params[:id])
+        @answer = Answer.find_or_initialize_by(params[:id])
 
     end
 
