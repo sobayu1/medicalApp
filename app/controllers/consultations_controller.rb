@@ -3,12 +3,10 @@ class ConsultationsController < ApplicationController
     DISPLAYED＿RESULTS = 6
 
     def index
-        @user = User.find(params[:user_id])
         @consultations = Consultation.all.page(params[:page]).per(ConsultationsController::DISPLAYED＿RESULTS)
     end
 
     def new
-        @user = User.find(params[:user_id])
         @consultation = Consultation.new
     end
 
@@ -16,10 +14,10 @@ class ConsultationsController < ApplicationController
         @consultation = Consultation.new(consultations_params)
         if @consultation.save!
             flash[:success] = "健康相談を受付けました" 
-            redirect_to user_consultations_path
+            redirect_to consultations_path
         else
             flash[:danger] = "入力に誤りがあります"
-            render new_user_consultation_path
+            render new_consultation_path
         end
     end
 
@@ -30,7 +28,7 @@ class ConsultationsController < ApplicationController
 
     def destroy
         @consultation.destroy
-        redirect_to user_consultations_path(current_user), flash:{notice: "「#{@consultation.id}」の掲示板が削除されました"}
+        redirect_to consultations_path(current_user), flash:{notice: "「#{@consultation.id}」の掲示板が削除されました"}
         
     end
 

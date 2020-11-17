@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
         @answer = Answer.new(answer_params)
         if @answer.save!
             flash[:success] = "健康相談に回答しました"
-            redirect_to user_consultations_path
+            redirect_to consultations_path(current_user)
         else
             flash[:danger] = "健康相談に回答できませんでした"
             redirect_back(fallback_location: root_path)
