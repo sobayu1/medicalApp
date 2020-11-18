@@ -17,15 +17,15 @@ Rails.application.routes.draw do
   }
 
   resources :users, :only => [:show] do
-    resources :user_informations 
-    resources :consultations do 
-      resources :answers, :only => [:create] 
-    end
-
+    resources :user_informations  
     end
 
   resources :doctors, :only => [:index,:show] ,shallow: true do
     resources :doctor_informations
+  end
+
+  resources :consultations do 
+    resources :answers, :only => [:create]
   end
 
 
