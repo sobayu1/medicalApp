@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_082849) do
+ActiveRecord::Schema.define(version: 2020_11_27_102828) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "answer_content"
@@ -58,6 +58,29 @@ ActiveRecord::Schema.define(version: 2020_09_16_082849) do
     t.date "birth_date"
     t.index ["email"], name: "index_doctors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
+  end
+
+  create_table "room_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "user_id"
+    t.bigint "doctor_id"
+    t.text "message_content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_room_messages_on_doctor_id"
+    t.index ["room_id"], name: "index_room_messages_on_room_id"
+    t.index ["user_id"], name: "index_room_messages_on_user_id"
+  end
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "doctor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "consultation_id"
+    t.index ["consultation_id"], name: "index_rooms_on_consultation_id"
+    t.index ["doctor_id"], name: "index_rooms_on_doctor_id"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "user_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -108,5 +131,11 @@ ActiveRecord::Schema.define(version: 2020_09_16_082849) do
   add_foreign_key "answers", "doctors"
   add_foreign_key "consultations", "users"
   add_foreign_key "doctor_informations", "doctors"
+  add_foreign_key "room_messages", "doctors"
+  add_foreign_key "room_messages", "rooms"
+  add_foreign_key "room_messages", "users"
+  add_foreign_key "rooms", "consultations"
+  add_foreign_key "rooms", "doctors"
+  add_foreign_key "rooms", "users"
   add_foreign_key "user_informations", "users"
 end
