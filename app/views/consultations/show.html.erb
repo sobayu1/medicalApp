@@ -26,3 +26,31 @@
 <div class="answer-indication">
     <%= @answer.answer_content %>
 </div>
+
+<div class="rooms-transition">
+    <% if user_signed_in? %>
+    <% if @doctor_ids.include?(doctor_id:@doctor.id) %>
+    <br>
+    <%= link_to "チャットへ", room_path(current_user.rooms.find_by(doctor_id: @doctor.id)) %><br>
+    <% else %>
+    <%= form_for Room.new do |f| %>
+    <%= f.hidden_field :doctor_id, :value => @doctor.id %>
+    <%= f.hidden_field :consultation_id, :value => @consultation.id %>
+    <%= f.submit %>
+    <% end %>
+    <% end %>
+    <% elsif doctor_signed_in? %>
+
+    <% if @user_ids.include?(user_id:@user.id) %>
+    <br>
+    <%= link_to "チャットへ", room_path(current_doctor.rooms.find_by(user_id: user.id)) %><br>
+    <% else %>
+    <%= form_for Room.new do |f| %>
+    <%= f.hidden_field :user_id, :value => user.id %>
+    <%= f.hidden_field :consultation_id, :value => @consultation.id %>
+    <%= f.submit %>
+    <% end %>
+    <% end %>
+    <% end %>
+
+</div>

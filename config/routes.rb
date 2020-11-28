@@ -28,5 +28,8 @@ Rails.application.routes.draw do
     resources :answers, :only => [:create]
   end
 
+  resources :rooms, :only => [:show, :create] do
+    resources :room_messages, :only => [:create] 
+  end
 
 end

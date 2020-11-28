@@ -23,6 +23,25 @@ class ConsultationsController < ApplicationController
 
     def show
         @answer = Answer.find_or_initialize_by(params[:id])
+        @doctor = Doctor.find(params[:id])
+        @user = User.find(params[:id]) 
+
+        if user_signed_in?
+            rooms = current_user.rooms
+            @doctor_ids = []
+            rooms.each do |r|
+                @doctor_ids << r.doctor_id
+
+            end
+
+        elsif doctor_signed_in?
+            rooms = current_doctor.rooms
+            @user_ids = []
+            rooms.each do |r|
+                @user_ids << r.user_id
+            end
+        end
+        
 
     end
 
