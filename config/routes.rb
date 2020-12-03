@@ -24,11 +24,9 @@ Rails.application.routes.draw do
     resources :doctor_informations
   end
 
-  resources :consultations do 
-    resources :answers, :only => [:create]
-  end
+  resources :consultations 
 
-  resources :rooms, :only => [:show, :create] do
+  resources :rooms, :only => [:show] do
     resources :room_messages, :only => [:create] 
   end
 
