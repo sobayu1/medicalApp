@@ -22,26 +22,6 @@ class RoomsController < ApplicationController
         end 
     end
 
-    def create 
-        if user_signed_in?
-            @room = Room.new(room_doctor_params)
-            @room.user_id = current_user.id
-            @room.consultation_id = @consultation.id
-        elsif doctor_signed_in?
-            @room = Room.new(room_user_params)
-            @room.doctor_id = current_doctor.id
-            @room.consultation_id = @consultation.id
-        else
-            redirect_to room_path(@room)
-        end
-
-        if @room.save!
-            redirect_to :action => "show" , :id => @room.id
-        else
-            redirect_to room_path
-        end
-    end
-
     private
 
     def room_doctor_params
