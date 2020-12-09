@@ -14,7 +14,7 @@ class ConsultationsController < ApplicationController
     def create
         @consultation = Consultation.new(consultations_params)
         if  @consultation.save!
-            if @room = Room.create(consultation_id: @consultation.id)
+            if @room = Room.create!(consultation_id: @consultation.id)
                 flash[:success] = "健康相談を受付けました" 
                 redirect_to room_path(@consultation)
             end
