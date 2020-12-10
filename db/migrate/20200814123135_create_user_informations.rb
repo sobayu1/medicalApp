@@ -1,8 +1,8 @@
 class CreateUserInformations < ActiveRecord::Migration[5.2]
   def change
     create_table :user_informations do |t|
-          add_column :user_informations, :height, :float
-      t.float :weight, :float
+      t.float :height
+      t.float :weight
       t.float :waist_circumference
       t.float :right_unaided_eyesight
       t.float :left_unaided_eyesight
