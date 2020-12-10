@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
     before_action :set_target_consultation
     
     def show
-        @room = Room.find_or_initialize_by(params[:consultation_id])
+        @room = Room.find(params[:id])
         @room_message = RoomMessage.new
         @room_messages = @room.room_messages
         if user_signed_in?
