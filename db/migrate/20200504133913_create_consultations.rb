@@ -7,6 +7,7 @@ class CreateConsultations < ActiveRecord::Migration[5.2]
       t.string :desease_name
       t.text :specific_consultation
       t.references :user, foreign_key: true
+      t.references :doctor, foreign_key: true
 
       t.timestamps
     end

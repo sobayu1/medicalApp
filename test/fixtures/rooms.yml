@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  answer_content: MyText
+  user: one
   doctor: one
-  consultation: one
 
 two:
-  answer_content: MyText
+  user: two
   doctor: two
-  consultation: two

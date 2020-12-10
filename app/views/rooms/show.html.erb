@@ -1,0 +1,37 @@
+<h1>チャットフォーム</h1>
+<% if user_signed_in? %>
+<h3><% @doctor.name %>とのチャットルーム</h3>
+<div class="chat-field">
+    <% @room_messages.each do |m| %>
+    <% if m.user_id %>
+    <div class="right-message">
+        <%= m.message_content %>
+    </div>
+    <% else %>
+    <div class="left-message">
+        <%= m.message_content %>
+    </div>
+    <% end %>
+    <% end %>
+</div>
+<% elsif doctor_signed_in?%>
+<h3><% @user.name %>とのチャットルーム</h3>
+<div class="chat-field">
+    <% @room_messages.each do |m| %>
+    <% if m.doctor_id %>
+    <div class="left-message">
+        <%= m.message_content %>
+    </div>
+    <% else %>
+    <div class="right-message">
+        <%= m.message_content %>
+    </div>
+    <% end %>
+    <% end %>
+</div>
+<% end %>
+
+<%= form_for [@room, @room_message] do |f| %>
+<%= f.text_field :message_content %>
+<%= f.submit "メッセージを送る"%>
+<% end %>

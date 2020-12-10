@@ -8,13 +8,16 @@ class ConsultationsController < ApplicationController
 
     def new
         @consultation = Consultation.new
+        @doctor = Doctor.find(1)
     end
 
     def create
         @consultation = Consultation.new(consultations_params)
-        if @consultation.save!
-            flash[:success] = "健康相談を受付けました" 
-            redirect_to consultations_path
+        if  @consultation.save!
+            if @room = Room.create!(consultation_id: @consultation.id)
+                flash[:success] = "健康相談を受付けました" 
+                redirect_to room_path(@consultation)
+            end
         else
             flash[:danger] = "入力に誤りがあります"
             render new_consultation_path
@@ -22,7 +25,25 @@ class ConsultationsController < ApplicationController
     end
 
     def show
-        @answer = Answer.find_or_initialize_by(params[:id])
+        # @doctor = Doctor.find(params[:id])
+        # @user = User.find(params[:id]) 
+
+        # if user_signed_in?
+        #     rooms = current_user.rooms
+        #     @doctor_ids = []
+        #     rooms.each do |r|
+        #         @doctor_ids << r.doctor_id
+
+        #     end
+
+        # elsif doctor_signed_in?
+        #     rooms = current_doctor.rooms
+        #     @user_ids = []
+        #     rooms.each do |r|
+        #         @user_ids << r.user_id
+        #     end
+        # end
+        
 
     end
 
@@ -35,7 +56,7 @@ class ConsultationsController < ApplicationController
     private
 
     def consultations_params
-        params.require(:consultation).permit(:what_symptom, :when_symptom, :desease_treated, :desease_name, :specific_consultation).merge(user_id: current_user.id)
+        params.require(:consultation).permit(:what_symptom, :when_symptom, :desease_treated, :desease_name, :specific_consultation, :doctor_id).merge(user_id: current_user.id )
     end
 
     def set_target_consultation
