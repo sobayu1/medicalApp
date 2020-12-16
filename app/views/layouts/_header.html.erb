@@ -7,14 +7,14 @@
             <%=link_to 'ヘルプ' , '/user_top/help',class: "p-2 text-dark" %>
 
             <% if user_signed_in? %>
-            <%= link_to current_user.username, user_path(current_user) ,class: "p-2 text-dark" %>
+            <%= link_to current_user.name, user_path(current_user) ,class: "p-2 text-dark" %>
             <%=link_to 'ログアウト', destroy_user_session_path, method: :delete , class: "p-2 text-dark"%>
             <% else %>
             <%=link_to 'ログイン', new_user_session_path ,class: "p-2 text-dark" %>
             <% end %>
 
             <% if doctor_signed_in? %>
-            <%= link_to current_doctor.doctorname, doctor_path(current_doctor) ,class: "p-2 text-dark" %>
+            <%= link_to current_doctor.name, doctor_path(current_doctor) ,class: "p-2 text-dark" %>
             <%=link_to '医師ログアウト', destroy_user_session_path, method: :delete , class: "p-2 text-dark"%>
             <% else %>
             <%=link_to '医師ログイン', new_doctor_session_path ,class: "p-2 text-dark" %>
