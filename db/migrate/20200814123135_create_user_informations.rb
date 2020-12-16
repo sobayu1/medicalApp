@@ -9,7 +9,7 @@ class CreateUserInformations < ActiveRecord::Migration[5.2]
       t.float :right_collected_vision
       t.float :left_collected_vision
       t.float :maximum_blood_pressure
-      t.string :hearing, :string
+      t.string :hearing
       t.float :minimum_blood_pressure
       t.float :hdl_cholesterole
       t.float :ldl_cholesterole
