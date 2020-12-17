@@ -13,7 +13,7 @@ class RoomMessagesController < ApplicationController
         @room_message.room_id = @room.id
 
 
-        if @room_message.save
+        if @room_message.save!
             redirect_to room_path(@room)
         else
             redirect_to room_path(@room)
