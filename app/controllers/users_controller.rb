@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @user_information = UserInformation.find_or_initialize_by(params[:id])
+    @user_information = UserInformation.find_or_initialize_by(id: params[:id])
   end
 
   def edit
