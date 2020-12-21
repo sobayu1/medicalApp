@@ -2,20 +2,20 @@ class RoomsController < ApplicationController
     before_action :set_target_consultation
     
     def show
-        @room = Room.find_by(params[:room_id])
+        @room = Room.find(params[:id])
         @room_message = RoomMessage.new
         @room_messages = @room.room_messages
         if user_signed_in?
             if @consultation.user_id == current_user.id
                 @doctor = @consultation.doctor
             else
-                redirect_to "/"
+                redirect_to user_path(current_user)
             end
         elsif doctor_signed_in?
             if @consultation.doctor_id == current_doctor.id
                 @user = @consultation.user
             else
-                redirect_to "/"
+                redirect_to doctor_path(current_doctor)
             end
         else
             redirect_to "/"

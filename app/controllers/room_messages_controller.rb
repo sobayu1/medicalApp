@@ -1,7 +1,7 @@
 class RoomMessagesController < ApplicationController
 
     def create
-        @room = Room.find_by(params[:room_id])
+        @room = Room.find(params[:room_id])
         @room_message = RoomMessage.new(room_message_params)
 
         if user_signed_in?
@@ -9,7 +9,7 @@ class RoomMessagesController < ApplicationController
         elsif doctor_signed_in?
             @room_message.doctor_id = current_doctor.id
         end
-
+        
         @room_message.room_id = @room.id
 
 
