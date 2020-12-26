@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_154432) do
+ActiveRecord::Schema.define(version: 2020_11_25_040908) do
 
   create_table "consultations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "what_symptom"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 2020_12_02_154432) do
     t.string "desease_name"
     t.text "specific_consultation"
     t.bigint "user_id"
+    t.bigint "doctor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "doctor_id"
     t.index ["doctor_id"], name: "index_consultations_on_doctor_id"
     t.index ["user_id", "created_at"], name: "index_consultations_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_consultations_on_user_id"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_12_02_154432) do
   end
 
   create_table "doctors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "sex"
+    t.date "birth_date"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -45,31 +48,30 @@ ActiveRecord::Schema.define(version: 2020_12_02_154432) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "doctorname"
-    t.string "sex"
-    t.date "birth_date"
     t.index ["email"], name: "index_doctors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
   end
 
   create_table "room_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "room_id"
+    t.bigint "user_id"
+    t.bigint "doctor_id"
     t.text "message_content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_room_messages_on_doctor_id"
     t.index ["room_id"], name: "index_room_messages_on_room_id"
+    t.index ["user_id"], name: "index_room_messages_on_user_id"
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "consultation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "consultation_id"
     t.index ["consultation_id"], name: "index_rooms_on_consultation_id"
   end
 
   create_table "user_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.float "height"
     t.float "weight"
     t.float "waist_circumference"
@@ -77,8 +79,8 @@ ActiveRecord::Schema.define(version: 2020_12_02_154432) do
     t.float "left_unaided_eyesight"
     t.float "right_collected_vision"
     t.float "left_collected_vision"
-    t.string "hearing"
     t.float "maximum_blood_pressure"
+    t.string "hearing"
     t.float "minimum_blood_pressure"
     t.float "hdl_cholesterole"
     t.float "ldl_cholesterole"
@@ -88,14 +90,20 @@ ActiveRecord::Schema.define(version: 2020_12_02_154432) do
     t.float "gtp"
     t.float "blood_sugar"
     t.float "hba1c"
-    t.integer "hemoglobin"
+    t.float "hemoglobin"
     t.integer "red_blood_cells"
     t.string "chest_x_ray"
     t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_informations_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "sex"
+    t.date "birth_date"
+    t.string "image"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -103,10 +111,6 @@ ActiveRecord::Schema.define(version: 2020_12_02_154432) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username"
-    t.string "sex"
-    t.date "birth_date"
-    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -114,7 +118,9 @@ ActiveRecord::Schema.define(version: 2020_12_02_154432) do
   add_foreign_key "consultations", "doctors"
   add_foreign_key "consultations", "users"
   add_foreign_key "doctor_informations", "doctors"
+  add_foreign_key "room_messages", "doctors"
   add_foreign_key "room_messages", "rooms"
+  add_foreign_key "room_messages", "users"
   add_foreign_key "rooms", "consultations"
   add_foreign_key "user_informations", "users"
 end

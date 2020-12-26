@@ -9,7 +9,7 @@ class DoctorsController < ApplicationController
 
     def show
         @doctor = current_doctor
-        @doctor_information = DoctorInformation.find(params[:id])
+        @doctor_information = DoctorInformation.find_or_initialize_by(id: params[:id])
     end
 
     def edit

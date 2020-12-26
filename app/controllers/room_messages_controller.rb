@@ -9,11 +9,11 @@ class RoomMessagesController < ApplicationController
         elsif doctor_signed_in?
             @room_message.doctor_id = current_doctor.id
         end
-
+        
         @room_message.room_id = @room.id
 
 
-        if @room_message.save
+        if @room_message.save!
             redirect_to room_path(@room)
         else
             redirect_to room_path(@room)

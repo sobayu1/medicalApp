@@ -1,21 +1,21 @@
 class RoomsController < ApplicationController
-    before_action :set_target_consultation
-    
+
     def show
         @room = Room.find(params[:id])
+        @consultation = @room.consultation
         @room_message = RoomMessage.new
         @room_messages = @room.room_messages
         if user_signed_in?
-            if @room.user.id == current_user.id
-                @doctor = @room.doctor
+            if @consultation.user_id == current_user.id
+                @doctor = @consultation.doctor
             else
-                redirect_to "/"
+                redirect_to user_path(current_user)
             end
         elsif doctor_signed_in?
-            if @room.doctor.id == current_doctor.id
-                @user = @room.user
+            if @consultation.doctor_id == current_doctor.id
+                @user = @consultation.user
             else
-                redirect_to "/"
+                redirect_to doctor_path(current_doctor)
             end
         else
             redirect_to "/"
@@ -31,10 +31,5 @@ class RoomsController < ApplicationController
     def room_user_params
         params.require(:room).permit(:user_id)
     end
-
-    def set_target_consultation
-        @consultation = Consultation.find_or_initialize_by(params[:id])
-    end
-
 
 end

@@ -8,7 +8,7 @@ ja:
       attributes:
           user:
             id: ID
-            username: 名前
+            name: 名前
             email: メールアドレス
             sex: 性別
             birth_date: 生年月日
@@ -16,7 +16,7 @@ ja:
             password_confirmation: パスワード（再入力）
           doctor:
             id: ID
-            doctorname: 名前
+            name: 名前
             email: メールアドレス
             sex: 性別
             birth_date: 生年月日
