@@ -1,8 +1,8 @@
 class RoomsController < ApplicationController
-    before_action :set_target_consultation
-    
+
     def show
         @room = Room.find(params[:id])
+        @consultation = @room.consultation
         @room_message = RoomMessage.new
         @room_messages = @room.room_messages
         if user_signed_in?
@@ -31,10 +31,5 @@ class RoomsController < ApplicationController
     def room_user_params
         params.require(:room).permit(:user_id)
     end
-
-    def set_target_consultation
-        @consultation = Consultation.find_or_initialize_by(params[:id])
-    end
-
 
 end
