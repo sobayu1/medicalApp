@@ -8,7 +8,7 @@ class ConsultationsController < ApplicationController
 
     def new
         @consultation = Consultation.new
-        @doctor = Doctor.find(1)
+        @doctor = params[:doctor_id]
     end
 
     def create

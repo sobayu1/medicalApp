@@ -43,7 +43,7 @@
             <%= f.text_area :specific_consultation , class: 'form-control' %>
         </div>
 
-        <%= f.hidden_field :doctor_id, :value => @doctor.id %>
+        <%= f.hidden_field :doctor_id, :value => @doctor %>
 
         <%= f.submit '以上の内容で相談する', class: 'btn btn-primary' %>
 
