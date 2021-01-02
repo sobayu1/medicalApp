@@ -9,22 +9,15 @@
             </tr>
         </thead>
         <tbody>
-            <% if user_signed_in?%>
-                <% @doctors.each do |doctor| %></tr>
-                    <tr>
-                        <td><%= doctor.name %></td>
-                        <td><%= doctor.sex %></td>
-                        <td><%= link_to '健康相談問診票作成' , new_consultation_path(current_user,doctor_id:doctor.id), class: "btn btn-outline-dark" %></td>
-                    </tr>  
-                <% end%>
-            <% else %> 
-                <% @doctors.each do |doctor| %></tr>
-                    <tr>
-                        <td><%= doctor.name %></td>
-                        <td><%= doctor.sex %></td>
-                    </tr>
-                <% end %>
-            <% end %>    
+            <% @doctors.each do |doctor| %></tr>
+                <tr>
+                    <td><%= doctor.name %></td>
+                    <td><%= doctor.sex %></td>
+                        <% if user_signed_in?%>
+                            <td><%= link_to '健康相談問診票作成' , new_consultation_path(current_user,doctor_id:doctor.id), class: "btn btn-outline-dark" %></td>
+                        <% end %>
+                </tr>  
+            <% end%>   
         </tbody>
     </table>
     <%= paginate(@doctors) %>
