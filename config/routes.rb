@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :user_informations  
     end
 
-  resources :doctors, :only => [:index,:show] ,shallow: true do
+  resources :doctors, :only => [:index,:show] do
     resources :doctor_informations
   end
 
