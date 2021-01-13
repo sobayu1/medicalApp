@@ -6,6 +6,7 @@ class DeviseCreateDoctors < ActiveRecord::Migration[5.2]
       t.string  :name
       t.string  :sex
       t.date    :birth_date
+      t.string  :image
       
       ## Database authenticatable
       t.string :email,              null: false, default: ""
