@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Tag.create([
+    { name: '内科' },
+    { name: '循環器内科' },
+    { name: '消化器内科'},
+    { name: '呼吸器科'},
+    { name: '消化器外科'},
+    { name: '整形外科'},
+    { name: '産婦人科'},
+    { name: '泌尿器科'},
+    { name: '皮膚科'},
+    { name: '耳鼻科'},
+    { name: 'その他'}
+    ])

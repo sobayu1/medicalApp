@@ -1,10 +1,15 @@
 <div class="card col-sm-6 mx-auto mt-5">
   <div class="card-body mx-auto">
-    <h2 class="mt-1 mb-3">アカウント編集 <%= resource_name.to_s.humanize %></h2>
+    <h2 class="mt-1 mb-3">医師登録情報編集</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
+    <div class="form-group">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    
     <div class="form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -28,10 +33,22 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
-    <!-- <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <div class="field">
+      <%= f.label :current_password %><br />
       <%= f.password_field :current_password, autocomplete: "current-password" %>
-    </div> -->
+    </div>
+    
+    <div class="form-group">
+      <h5>専攻分野</h5></br>
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+        <div class= "form-check">
+          <%= tag.label class: 'form-check-label' do %>
+            <%= tag.check_box class: 'form-check-input'%>
+            <%= tag.text %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
     <div class="field">
       <%= f.label :プロフィール画像 %><br />
@@ -39,14 +56,14 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "更新" %>
+      <%= f.submit "更新" ,class:'btn btn-lg btn-success'%>
     </div>
     <% end %>
 
-    <h3>Cancel my account</h3>
+    <h3>アカウントを削除する</h3>
 
     <p>Unhappy?
-      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+      <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除してよろしいですか?" }, method: :delete %>
     </p>
 
     <%= link_to "マイページへ戻る", :back %>

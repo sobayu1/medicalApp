@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_040908) do
+ActiveRecord::Schema.define(version: 2021_01_05_145010) do
 
   create_table "consultations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "what_symptom"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2020_11_25_040908) do
 
   create_table "doctor_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "hospital"
-    t.string "specialty"
     t.text "career"
     t.bigint "doctor_id"
     t.datetime "created_at", null: false
@@ -37,10 +36,20 @@ ActiveRecord::Schema.define(version: 2020_11_25_040908) do
     t.index ["doctor_id"], name: "index_doctor_informations_on_doctor_id"
   end
 
+  create_table "doctor_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_doctor_tags_on_doctor_id"
+    t.index ["tag_id"], name: "index_doctor_tags_on_tag_id"
+  end
+
   create_table "doctors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "sex"
     t.date "birth_date"
+    t.string "image"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -69,6 +78,12 @@ ActiveRecord::Schema.define(version: 2020_11_25_040908) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["consultation_id"], name: "index_rooms_on_consultation_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -118,6 +133,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_040908) do
   add_foreign_key "consultations", "doctors"
   add_foreign_key "consultations", "users"
   add_foreign_key "doctor_informations", "doctors"
+  add_foreign_key "doctor_tags", "doctors"
+  add_foreign_key "doctor_tags", "tags"
   add_foreign_key "room_messages", "doctors"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"

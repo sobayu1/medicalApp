@@ -14,6 +14,7 @@ ja:
             birth_date: 生年月日
             password: パスワード
             password_confirmation: パスワード（再入力）
+            current_password: 現在のパスワード
           doctor:
             id: ID
             name: 名前
@@ -22,6 +23,7 @@ ja:
             birth_date: 生年月日
             password: パスワード
             password_confirmation: パスワード（再入力）
+            current_password: 現在のパスワード
           
           
     # 全てのmodelで共通して使用するattributesを定義
