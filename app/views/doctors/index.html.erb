@@ -1,13 +1,13 @@
 <h2>登録医師一覧</h2>
 <div class="d-flex align-items-center">
     <div class="ml-auto doctors_linkBox">
-        <%= form_tag doctors_path,method: :get, class: 'doctors_searchForm' do %>
+        <%= form_tag doctors_path, method: :get, class: 'doctors_searchForm' do %>
             <%= select_tag :tag_id,
-                            options_from_collection_for_select(Tag.all, :id,:name, params[:tag_id]),
+                            options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
                             {
                                 prompt: '専攻で絞り込み',
-                                class: 'form-control doctors_selsct',
-                                oncahnge: 'submit(this.form);'
+                                class: 'form-control doctors_select',
+                                onchange: 'submit(this.form);'
                             }
             %>
         <% end %>
@@ -17,7 +17,7 @@
                 <tr>
                     <th>医師名</th>
                     <th>性別</th>
-                    <th>専攻分野</th>
+                    <th>専攻</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +25,10 @@
                     <tr>
                         <td><%= doctor.name %></td>
                         <td><%= doctor.sex %></td>
+                        <td><% doctor.tags.each do |tag| %>
+                                <span class= "badge badge-primary"><%= tag.name %></span>
+                            <% end %>
+                        </td>
                             <% if user_signed_in?%>
                                 <td><%= link_to '健康相談問診票作成' , new_consultation_path(current_user,doctor_id:doctor.id), class: "btn btn-outline-dark" %></td>
                             <% end %>
