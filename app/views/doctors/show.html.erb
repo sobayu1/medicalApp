@@ -1,17 +1,19 @@
 <div class="row">
     <aside class="col-md-4">
         <section class="doctor_info">
-
-
+            <% if @doctor.image? %>
+                <p><%= image_tag @doctor.image.thumb.url %></p>
+            <% end %>
             <p>名前：<%= @doctor.name %></p>
             <p>性別：<%= @doctor.sex %></p>
             <p>生年月日：<%= @doctor.birth_date %></p>
             <p>Eメール：<%= @doctor.email %></p>
-
+            <p>    <% @doctor.tags.each do |tag| %>
+                        <span class= "badge badge-primary"><%= tag.name %></span>
+                <% end %>
+            </p>
             <%= link_to '医師情報編集' , edit_doctor_registration_path, class: "btn btn-lg btn-secondary" %>
-
             <%= link_to '健康相談に回答する' , '#', class: "btn btn-lg btn-success" %>
-
         </section>
     </aside>
 
@@ -35,7 +37,7 @@
                 </tbody>
             </table>
 
-            <%= link_to '医師情報変更', edit_doctor_information_path(current_doctor),class:"btn btn-lg btn-success" %>
+            <%= link_to '医師情報変更', edit_doctor_doctor_information_path(current_doctor),class:"btn btn-lg btn-success" %>
         </div>
     </div>
 </div>
