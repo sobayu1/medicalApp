@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_05_145010) do
+ActiveRecord::Schema.define(version: 2021_01_15_123014) do
 
   create_table "consultations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "what_symptom"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2021_01_05_145010) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_doctors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
+  end
+
+  create_table "rates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "doctor_rate"
+    t.bigint "user_id"
+    t.bigint "doctor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_rates_on_doctor_id"
+    t.index ["user_id"], name: "index_rates_on_user_id"
   end
 
   create_table "room_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -135,6 +145,8 @@ ActiveRecord::Schema.define(version: 2021_01_05_145010) do
   add_foreign_key "doctor_informations", "doctors"
   add_foreign_key "doctor_tags", "doctors"
   add_foreign_key "doctor_tags", "tags"
+  add_foreign_key "rates", "doctors"
+  add_foreign_key "rates", "users"
   add_foreign_key "room_messages", "doctors"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
