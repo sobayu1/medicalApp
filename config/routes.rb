@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   resources :consultations 
 
   resources :rooms, :only => [:show] do
-    resources :room_messages, :only => [:create] 
+    resources :room_messages, :only => [:create]
   end
+
+  resources :rates, :only => [:new, :create]
 
 end
