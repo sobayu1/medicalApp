@@ -9,8 +9,7 @@
         <div class="form-group row" id="star">
             <%= f.label :doctor_rate,'評価', class:'col-md-3 col-form-label' %>
             <%= f.hidden_field :doctor_rate, id: :review_star %>
-            <%# <%= f.hidden_field :user_id, id: current_user.id %> 
-            <%# <%= f.hidden_field :doctor_id, id: %> 
+            <%= f.hidden_field :doctor_id, :value => @doctor %> 
         </div>
 
 
