@@ -4,12 +4,13 @@
         <p>今回担当させて頂いた担当医師はいかがでしたか？</p>
         <p>今回の健康相談における担当医師の対応について評価をお願い致します。</p>
 
-        <%= form_with model:@rate do |f| %>
+        <%= form_with(model:[@consultation, @rate]) do |f| %>
         
         <div class="form-group row" id="star">
             <%= f.label :doctor_rate,'評価', class:'col-md-3 col-form-label' %>
             <%= f.hidden_field :doctor_rate, id: :review_star %>
-            <%= f.hidden_field :doctor_id, :value => @doctor %> 
+            <%= f.hidden_field :doctor_id, :value => @doctor %>
+            <%= f.hidden_field :consultation_id, :value => @consultation.id %>
         </div>
 
 
