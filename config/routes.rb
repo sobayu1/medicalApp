@@ -24,12 +24,12 @@ Rails.application.routes.draw do
     resources :doctor_informations
   end
 
-  resources :consultations 
+  resources :consultations do
+    resources :rates, :only => [:new, :create]
+  end
 
   resources :rooms, :only => [:show] do
     resources :room_messages, :only => [:create]
   end
-
-  resources :rates, :only => [:new, :create]
 
 end
