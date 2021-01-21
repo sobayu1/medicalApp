@@ -2,7 +2,6 @@ class RatesController < ApplicationController
 
     def new
         @consultation = Consultation.find(params[:consultation_id])
-        @doctor = params[:doctor_id]
         @rate = Rate.new
     end
 
@@ -19,6 +18,6 @@ class RatesController < ApplicationController
 
     private
     def rate_params
-        params.require(:rate).permit(:doctor_rate, :doctor_id, :consultation_id).merge(user_id: current_user.id)
+        params.require(:rate).permit(:doctor_rate, :consultation_id)
     end
 end
