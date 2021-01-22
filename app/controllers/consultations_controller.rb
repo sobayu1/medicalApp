@@ -16,7 +16,7 @@ class ConsultationsController < ApplicationController
         if  @consultation.save!
             if @room = Room.create!(consultation_id: @consultation.id)
                 flash[:success] = "健康相談を受付けました" 
-                redirect_to room_path(@consultation)
+                redirect_to consultation_path(@consultation)
             end
         else
             flash[:danger] = "入力に誤りがあります"
@@ -25,26 +25,7 @@ class ConsultationsController < ApplicationController
     end
 
     def show
-        # @doctor = Doctor.find(params[:id])
-        # @user = User.find(params[:id]) 
-
-        # if user_signed_in?
-        #     rooms = current_user.rooms
-        #     @doctor_ids = []
-        #     rooms.each do |r|
-        #         @doctor_ids << r.doctor_id
-
-        #     end
-
-        # elsif doctor_signed_in?
-        #     rooms = current_doctor.rooms
-        #     @user_ids = []
-        #     rooms.each do |r|
-        #         @user_ids << r.user_id
-        #     end
-        # end
         
-
     end
 
     def destroy

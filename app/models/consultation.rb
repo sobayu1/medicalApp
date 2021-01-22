@@ -1,6 +1,7 @@
 class Consultation < ApplicationRecord
   belongs_to :user　,optional: true
   belongs_to :doctor ,optional: true
+  has_many :rates, dependent: :destroy
   has_many :rooms, dependent: :destroy
   validates :user_id, presence: true
   validates :what_symptom, presence: true
