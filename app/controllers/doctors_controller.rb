@@ -4,6 +4,7 @@ class DoctorsController < ApplicationController
     def index 
         @doctors = params[:tag_id].present? ? Tag.find(params[:tag_id]).doctors : Doctor.all 
         @doctors = @doctors.page(params[:page]).per(DoctorsController::DISPLAYED_RESULTS)
+        @rate = Rate.group(:doctor_id).average(:doctor_rate)
     end
 
     def show
