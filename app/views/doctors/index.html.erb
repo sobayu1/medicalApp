@@ -18,23 +18,38 @@
                     <th>医師名</th>
                     <th>性別</th>
                     <th>専攻</th>
+                    <th>評価</th>
                 </tr>
             </thead>
             <tbody>
-                <% @doctors.each do |doctor| %></tr>
-                    <tr>
+                <tr><% @doctors.each do |doctor| %>
                         <td><%= doctor.name %></td>
                         <td><%= doctor.sex %></td>
                         <td><% doctor.tags.each do |tag| %>
                                 <span class= "badge badge-primary"><%= tag.name %></span>
                             <% end %>
                         </td>
+                        <td><% doctor.rates.each do |rate| %>
+                                    <div id="star-rate-<%= rate.id %>"></div>
+                                        <script>
+                                            $('#star-rate-<%= rate.id %>').raty({
+                                                size: 36,
+                                                starOff:  '<%= asset_path('star-off.png') %>',
+                                                starOn : '<%= asset_path('star-on.png') %>',
+                                                starHalf: '<%= asset_path('star-half.png') %>',
+                                                half: true,
+                                                readOnly: true,
+                                                score:  <%= rate.doctor_rate %>
+                                                });
+                                        </script>
+                            <% end %>
+                        </td>
                             <% if user_signed_in?%>
                                 <td><%= link_to '健康相談問診票作成' , new_consultation_path(current_user,doctor_id:doctor.id), class: "btn btn-outline-dark" %></td>
                             <% end %>
-                    </tr>  
-                <% end%>   
+                </tr>
             </tbody>
         </table>
         <%= paginate(@doctors) %>
+        <% end %>
 </div>
