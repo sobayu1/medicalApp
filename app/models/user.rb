@@ -6,7 +6,7 @@ has_many :room_messages, dependent: :destroy
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+ratyrate_rater
 has_one_attached :image
 
 mount_uploader :image, ImageUploader
