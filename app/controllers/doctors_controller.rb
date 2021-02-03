@@ -12,7 +12,7 @@ class DoctorsController < ApplicationController
     end
 
     def review
-        
+        @doctor = Doctor.find(params[:doctor_id])
     end
 
 end

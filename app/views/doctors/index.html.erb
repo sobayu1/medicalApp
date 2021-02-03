@@ -1,5 +1,4 @@
 <h2>登録医師一覧</h2>
-<div class="d-flex align-items-center">
     <div class="ml-auto doctors_linkBox">
         <%= form_tag doctors_path, method: :get, class: 'doctors_searchForm' do %>
             <%= select_tag :tag_id,
@@ -12,12 +11,15 @@
             %>
         <% end %>
     </div>
+    <div class="d-flex align-items-center">
         <table class="table table-hover doctors__table">
             <thead class="thead-dark">
                 <tr>
                     <th>医師名</th>
                     <th>性別</th>
                     <th>専攻</th>
+                    <th>総合評価</th>
+                    <th>　</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,12 +31,13 @@
                                 <span class= "badge badge-primary"><%= tag.name %></span>
                             <% end %>
                         </td>
+                        <td><%= rating_for doctor, "doctor", disable_after_rate: true, imdb_avg: true %>
                             <% if user_signed_in?%>
                                 <td><%= link_to '健康相談問診票作成' , new_consultation_path(current_user,doctor_id:doctor.id), class: "btn btn-outline-dark" %></td>
                             <% end %>
                     </tr>  
-                <% end%>   
+                <% end %>
             </tbody>
         </table>
         <%= paginate(@doctors) %>
-</div>
+    </div>

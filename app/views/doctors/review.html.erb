@@ -5,6 +5,8 @@
         <p>今回の健康相談における担当医師の対応について評価をお願い致します。</p>
 
 
-        <p><%= rating_for @doctor, 'doctor'%></p>
+        <p><%= rating_for @doctor, 'doctor',disable_after_rate: false, enable_half: true %></p>
+
+        <%= link_to 'マイページに戻る', user_path(current_user),class:"btn btn-lg btn-danger"  %>
     </div>
 </div>
