@@ -11,4 +11,8 @@ class DoctorsController < ApplicationController
         @doctor_information = DoctorInformation.find_or_initialize_by(id: params[:id])
     end
 
+    def review
+        
+    end
+
 end
