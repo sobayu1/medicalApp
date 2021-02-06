@@ -31,7 +31,7 @@
                                 <span class= "badge badge-primary"><%= tag.name %></span>
                             <% end %>
                         </td>
-                        <td><%= rating_for doctor, "doctor", disable_after_rate: true, imdb_avg: true %>
+                        <td><%= rating_for doctor, "doctor", disable_after_rate: true, imdb_avg: true %></td>
                             <% if user_signed_in?%>
                                 <td><%= link_to '健康相談問診票作成' , new_consultation_path(current_user,doctor_id:doctor.id), class: "btn btn-outline-dark" %></td>
                             <% end %>
