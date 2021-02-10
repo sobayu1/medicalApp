@@ -12,5 +12,5 @@
 <%= link_to '医師とのチャットルームへ進む', room_path(@consultation), class:"btn btn-lg btn-danger" %>
 
 <% if user_signed_in? %>
-<%= link_to '健康相談を完了とする', new_consultation_rate_path(@consultation), class:"btn btn-lg btn-danger" %>
+<%= link_to '健康相談を完了とする', doctors_review_path(doctor_id:@consultation.doctor_id), class:"btn btn-lg btn-danger" %>
 <% end %>

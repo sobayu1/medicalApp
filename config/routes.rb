@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  post '/rate' => 'rater#create', :as => 'rate'
   root 'user_top#home'
   get 'user_top/home'
   get 'user_top/help'
   get 'doctor_top/home'
   get 'doctor_top/help'
+  get 'doctors/review'
+  post '/rate' => 'rater#create', :as => 'rate'
   
   devise_for :users, controllers: {
     :sessions => 'users/sessions',
