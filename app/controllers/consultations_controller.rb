@@ -1,9 +1,15 @@
 class ConsultationsController < ApplicationController
     before_action :set_target_consultation, only: %i[show destroy] 
-    DISPLAYED＿RESULTS = 6
+    DISPLAYED＿RESULTS = 10
 
     def index
-        @consultations = Consultation.all.page(params[:page]).per(ConsultationsController::DISPLAYED＿RESULTS)
+        if user_signed_in?
+            @consultations = Consultation.where(user_id: current_user.id).page(params[:page]).per(ConsultationsController::DISPLAYED＿RESULTS)
+        elsif doctor_signed_in?
+            @consultations = Consultation.where(doctor_id: current_doctor.id).page(params[:page]).per(ConsultationsController::DISPLAYED＿RESULTS)
+        else
+            redirect_to root_path
+        end
     end
 
     def new
