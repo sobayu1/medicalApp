@@ -1,5 +1,5 @@
 class ConsultationsController < ApplicationController
-    before_action :set_target_consultation, only: %i[show destroy] 
+    before_action :set_target_consultation, only: %i[show update destroy]
     DISPLAYED＿RESULTS = 10
 
     def index
@@ -31,7 +31,14 @@ class ConsultationsController < ApplicationController
     end
 
     def show
-        
+
+    end
+
+    def update
+        if @consultation.update(completed_params)
+            flash[:success] = "健康相談を完了しました"
+            redirect_to doctors_review_path(@consultation)
+        end
     end
 
     def destroy
@@ -48,5 +55,9 @@ class ConsultationsController < ApplicationController
 
     def set_target_consultation
         @consultation = Consultation.find(params[:id])
+    end
+
+    def completed_params
+        params.require(:consultation).permit(:completed)
     end
 end

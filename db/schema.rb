@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_01_31_064405) do
     t.string "desease_treated"
     t.string "desease_name"
     t.text "specific_consultation"
+    t.boolean "completed", default: false, null: false
     t.bigint "user_id"
     t.bigint "doctor_id"
     t.datetime "created_at", null: false

@@ -6,6 +6,7 @@ class CreateConsultations < ActiveRecord::Migration[5.2]
       t.string :desease_treated
       t.string :desease_name
       t.text :specific_consultation
+      t.boolean :completed, default: false, null: false
       t.references :user, foreign_key: true
       t.references :doctor, foreign_key: true
 
